@@ -4,14 +4,21 @@ services:
   reviewDB:
     image: cassandra:latest
     ports:
-      - "9042:9042"
+      - 7000:7000
+      - 7001:7001
+      - 9042:9042
+      - 9142:9142
+      - 7199:7199
+      - 9160:9160
 
   review:
     # image: hanlinaunghack/sdcreview1atest
     build: .
     environment:
-      WAIT_HOSTS: reviewDB:9042
+      - CASSANDRA_CONTACT_POINTS=reviewDB
     ports:
       - "80:3000"
     depends_on:
+      - reviewDB
+    links:
       - reviewDB
