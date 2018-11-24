@@ -10,6 +10,7 @@ app.use(parser.json());
 
 app.get("/api/:id/reviews/3000000", (req, res) => {
   let id = Number(req.params.id);
+  console.log("HELLO");
   Ratings.find({ id: id }, (err, docs) => {
     if (err) console.error(err);
     res.json(docs[0]);

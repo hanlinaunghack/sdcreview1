@@ -4,12 +4,13 @@ services:
   reviewDB:
     image: cassandra:latest
     ports:
-      - "9160:9160"
+      - "9042:9042"
 
   review:
-    build: .
+    image: hanlinaunghack/sdcreview1:latest
+    # build: .
     environment:
-      WAIT_HOSTS: reviewDB:9160
+      WAIT_HOSTS: reviewDB:9042
     ports:
       - "80:3000"
     depends_on:

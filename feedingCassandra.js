@@ -1,7 +1,7 @@
 const Ratings = require("./connection.js");
 const rating = require("./generateRatings.js");
-global.counter = 1;
-var total = 10;
+const feedingCassandra = require("./feedingCassandra.js");
+
 const feedingCassandra = async total => {
   if (total) {
     var entree = new Ratings({
@@ -19,4 +19,10 @@ const feedingCassandra = async total => {
     console.log(counter);
   }
 };
+
+global.counter = 1;
+var total = 5;
+
 feedingCassandra(total);
+
+module.exports = feedingCassandra;
