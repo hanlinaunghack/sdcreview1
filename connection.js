@@ -1,7 +1,15 @@
-var ExpressCassandra = require("express-cassandra");
+const ExpressCassandra = require("express-cassandra");
+const CASSANDRA_CONTACT_POINTS = require("config.js");
+const _ = require("lodash");
+
+if (_.isEmpty(CASSANDRA_CONTACT_POINTS)) {
+  console.error("CASSANDRA_CONTACT_POINTS environment variable not set");
+  process.exit(1);
+}
+
 var models = ExpressCassandra.createClient({
   clientOptions: {
-    contactPoints: ["54.67.76.150"],
+    contactPoints: CASSANDRA_CONTACT_POINTS,
     protocolOptions: { port: 9042 }, //9042 9160
     keyspace: "airbnb",
     queryOptions: { consistency: ExpressCassandra.consistencies.one }
