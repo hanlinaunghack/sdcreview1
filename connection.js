@@ -1,7 +1,7 @@
 var ExpressCassandra = require("express-cassandra");
 var models = ExpressCassandra.createClient({
   clientOptions: {
-    contactPoints: ["localhost"],
+    contactPoints: ["127.0.0.1"],
     protocolOptions: { port: 9042 }, //9042 9160
     keyspace: "airbnb",
     queryOptions: { consistency: ExpressCassandra.consistencies.one }
