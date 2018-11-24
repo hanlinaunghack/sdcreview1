@@ -7,11 +7,11 @@ services:
       - "9042:9042"
 
   review:
-    image: hanlinaunghack/sdcreview1:latest
-    # build: .
+    # image: hanlinaunghack/sdcreview1atest
+    build: .
     environment:
       WAIT_HOSTS: reviewDB:9042
     ports:
-      - "80:3000"
+      - "3000:3000"
     depends_on:
       - reviewDB

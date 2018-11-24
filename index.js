@@ -4,11 +4,13 @@ const parser = require("body-parser");
 const app = express();
 const port = process.env.PORT || 3000;
 const Ratings = require("./connection.js");
+const path = require("path");
 
 app.use(cors());
 app.use(parser.json());
+app.use(express.static(path.join(__dirname, "./dist")));
 
-app.get("/api/:id/reviews/3000000", (req, res) => {
+app.get("/api/:id/reviews/a", (req, res) => {
   let id = Number(req.params.id);
   console.log("HELLO");
   Ratings.find({ id: id }, (err, docs) => {
@@ -16,7 +18,7 @@ app.get("/api/:id/reviews/3000000", (req, res) => {
     res.json(docs[0]);
   });
 });
-app.post("/api/:id/reviews/3000000", (req, res) => {
+app.post("/api/:id/reviews/a", (req, res) => {
   let id = Number(req.params.id);
   if (req.body && req.body.author && req.body.body) {
     var name = req.body.author;
